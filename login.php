@@ -7,7 +7,7 @@
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <title>LOGIN</title>
 </head>
-<body>
+<body class=''>  
     <div id='container' class=' '>
         <div id='content' class='float-left text-7xl mt-60 ml-40 text-violet-600 '>
             <p class=''>Welcome To</p>
@@ -28,6 +28,7 @@
             </label>
             <br>
             <button id='btnSubmit' name='btnSubmit' class='mt-40 w-40 h-14 bg-white rounded-full'>Submit</button>
+            <button id='btnRegis' name='btnRegis' class='mt-40 w-40 h-14 bg-white rounded-full'>Registration</button>
         </div>
         </div>
     </div>
