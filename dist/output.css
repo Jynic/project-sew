@@ -646,10 +646,6 @@ video {
   margin-top: 0.75rem;
 }
 
-.mt-4{
-  margin-top: 1rem;
-}
-
 .mt-40{
   margin-top: 10rem;
 }
@@ -672,18 +668,6 @@ video {
 
 .h-14{
   height: 3.5rem;
-}
-
-.h-10{
-  height: 2.5rem;
-}
-
-.h-20{
-  height: 5rem;
-}
-
-.h-7{
-  height: 1.75rem;
 }
 
 .h-8{
@@ -710,10 +694,6 @@ video {
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.p-2{
-  padding: 0.5rem;
 }
 
 .text-left{
