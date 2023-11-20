@@ -8,6 +8,7 @@ body{
   overflow: hidden;
   -webkit-clip-path: inset(0px 0px 0px 0 round 20px);
           clip-path: inset(0px 0px 0px 0 round 20px);
+  background-color: #2B3499;
 }
 
 #logo{
@@ -32,11 +33,14 @@ body{
 
 #btnSubmit,#btnRegis{
   font-size: 20px;
+  font-family: 'Didot';
+  background-color: #FFD099;
 }
 
 #content{
   font-family: 'Cambria';
   -webkit-text-stroke: white 1px;
+  color: #2B3499;
 }
 
 /*
@@ -677,11 +681,6 @@ video {
   border-radius: 9999px;
 }
 
-.bg-violet-600{
-  --tw-bg-opacity: 1;
-  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
-}
-
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -699,9 +698,4 @@ video {
 .text-red-700{
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
-}
-
-.text-violet-600{
-  --tw-text-opacity: 1;
-  color: rgb(124 58 237 / var(--tw-text-opacity));
 }

@@ -6,6 +6,7 @@ body{
     height: 650px;
     overflow: hidden;
     clip-path: inset(0px 0px 0px 0 round 20px);
+    background-color: #2B3499;
 }
 #logo{
     width: 50px;
@@ -26,10 +27,13 @@ body{
 }
 #btnSubmit,#btnRegis{
     font-size: 20px;
+    font-family: 'Didot';
+    background-color: #FFD099;
 }
 #content{
     font-family: 'Cambria';
     -webkit-text-stroke: white 1px;
+    color: #2B3499;
 }
 
 @tailwind base;
