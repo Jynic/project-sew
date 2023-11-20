@@ -1,12 +1,11 @@
 body{
-    background-color: #FFD099;
+    background-color: #ffffff;
 }
 #aside{
     width: 600px;
     height: 650px;
     overflow: hidden;
     clip-path: inset(0px 0px 0px 0 round 20px);
-    background-color: #2B3499;
 }
 #logo{
     width: 50px;
@@ -17,24 +16,20 @@ body{
     width: 500px;
     
 }
-#txtUser{
+#txtUser, #txtPass, #rdsiswa, #rdtentor, #txtHakAkses, #txtEmail, #txtNoHP, #txtrd{
     font-family: 'Didot';
     font-size: 25px;
 }
-#txtPass{
-    font-family: 'Didot';
-    font-size: 25px;
-}
-#btnSubmit,#btnRegis{
+#btnSubmit,#btnRegis, #btnLogin{
     font-size: 20px;
     font-family: 'Didot';
-    background-color: #FFD099;
+    background-color: #ffffff;
 }
 #content{
     font-family: 'Cambria';
-    -webkit-text-stroke: white 1px;
-    color: #2B3499;
+    -webkit-text-stroke: rgb(0, 0, 0) 1px;
 }
+
 
 @tailwind base;
 @tailwind components;

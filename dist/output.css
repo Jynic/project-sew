@@ -1,5 +1,5 @@
 body{
-  background-color: #FFD099;
+  background-color: #ffffff;
 }
 
 #aside{
@@ -8,7 +8,6 @@ body{
   overflow: hidden;
   -webkit-clip-path: inset(0px 0px 0px 0 round 20px);
           clip-path: inset(0px 0px 0px 0 round 20px);
-  background-color: #2B3499;
 }
 
 #logo{
@@ -21,26 +20,20 @@ body{
   width: 500px;
 }
 
-#txtUser{
+#txtUser, #txtPass, #rdsiswa, #rdtentor, #txtHakAkses, #txtEmail, #txtNoHP, #txtrd{
   font-family: 'Didot';
   font-size: 25px;
 }
 
-#txtPass{
-  font-family: 'Didot';
-  font-size: 25px;
-}
-
-#btnSubmit,#btnRegis{
+#btnSubmit,#btnRegis, #btnLogin{
   font-size: 20px;
   font-family: 'Didot';
-  background-color: #FFD099;
+  background-color: #ffffff;
 }
 
 #content{
   font-family: 'Cambria';
-  -webkit-text-stroke: white 1px;
-  color: #2B3499;
+  -webkit-text-stroke: rgb(0, 0, 0) 1px;
 }
 
 /*
@@ -613,6 +606,10 @@ video {
   }
 }
 
+.relative{
+  position: relative;
+}
+
 .float-left{
   float: left;
 }
@@ -649,6 +646,10 @@ video {
   margin-top: 0.75rem;
 }
 
+.mt-4{
+  margin-top: 1rem;
+}
+
 .mt-40{
   margin-top: 10rem;
 }
@@ -665,8 +666,28 @@ video {
   display: flex;
 }
 
+.table{
+  display: table;
+}
+
 .h-14{
   height: 3.5rem;
+}
+
+.h-10{
+  height: 2.5rem;
+}
+
+.h-20{
+  height: 5rem;
+}
+
+.h-7{
+  height: 1.75rem;
+}
+
+.h-8{
+  height: 2rem;
 }
 
 .w-40{
@@ -681,9 +702,22 @@ video {
   border-radius: 9999px;
 }
 
+.bg-violet-600{
+  --tw-bg-opacity: 1;
+  background-color: rgb(124 58 237 / var(--tw-bg-opacity));
+}
+
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.p-2{
+  padding: 0.5rem;
+}
+
+.text-left{
+  text-align: left;
 }
 
 .text-center{
@@ -698,4 +732,9 @@ video {
 .text-red-700{
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
+.text-violet-600{
+  --tw-text-opacity: 1;
+  color: rgb(124 58 237 / var(--tw-text-opacity));
 }

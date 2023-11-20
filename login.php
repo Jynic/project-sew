@@ -9,13 +9,13 @@
 </head>
 <body class=''>  
     <div id='container' class=' '>
-        <div id='content' class='float-left text-7xl mt-60 ml-40  '>
+        <div id='content' class='float-left text-7xl mt-60 ml-40  text-violet-600'>
             <p class=''>Welcome To</p>
             <p>EDUCONCEPT</p>
         </div>
 
         <div class='flex justify-end'>
-        <div id='aside' class=' mr-12 mt-12 text-center'>
+        <div id='aside' class=' mr-12 mt-12 text-center bg-violet-600'>
             <img id='logo' class='block ml-auto mr-auto mt-10' src="img/logo-dummy.png" alt="logo-dummy">
             <br>
             <hr id='garis' class='mr-auto ml-auto mt-3 mb-10'>
@@ -28,7 +28,7 @@
             </label>
             <br>
             <button id='btnSubmit' name='btnSubmit' class='mt-40 w-40 h-14 bg-white rounded-full'>Submit</button>&nbsp &nbsp &nbsp &nbsp
-            <button id='btnRegis' name='btnRegis' class='mt-40 w-40 h-14 bg-white rounded-full'>Registration</button>
+            <button id='btnRegis' name='btnRegis' class='mt-40 w-40 h-14 bg-white rounded-full' onclick="window.location.href='register.php'">Registration</button>
         </div>
         </div>
     </div>
