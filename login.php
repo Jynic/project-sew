@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type='text/css' href="login.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <title>LOGIN</title>
 </head>
 <body class=''>  
@@ -20,11 +21,11 @@
             <br>
             <hr id='garis' class='mr-auto ml-auto mt-3 mb-10'>
             <label class=' ' id='txtUser'>Username : <span class ='text-red-700'>*</span>&nbsp &nbsp
-            <input type="text" name='txtUsername' placeholder='  Type Your Username'>
+            <input id='txtuser' type="text" name='txtUsername' placeholder='  Type Your Username'>
             </label>
             <br><br>
             <label class=' ' id='txtPass'>Password : <span class ='text-red-700'>*</span>&nbsp &nbsp
-            <input type="text" name='txtPassword' placeholder='  Type Your Password'>
+            <input type="text" name='txtPassword' id='txtpass' placeholder='  Type Your Password'>
             </label>
             <br>
             <button id='btnSubmit' name='btnSubmit' class='mt-40 w-40 h-14 bg-white rounded-full'>Submit</button>&nbsp &nbsp &nbsp &nbsp
@@ -32,5 +33,26 @@
         </div>
         </div>
     </div>
+    <script type='text/javascript'>
+        $('#btnSubmit').click(function(){
+            var p_username = $('#txtuser').val();
+            var p_password = $('#txtpass').val();
+            $.post('login-ajax.php', {p_user: p_username, p_pass: p_password}).done(function(data){
+                if(data == "Not Found"){
+                    alert(data);
+                }else{
+                    var json_result = JSON.parse(data);
+                    var user = json_result.username;
+                    var pass = json_result.password;
+                    if(user == p_username && pass == p_password){
+                        alert("SUKSES");
+                    }
+                    else{
+                        alert("LOGIN GAGAL");
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
