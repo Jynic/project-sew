@@ -83,3 +83,24 @@
     color: #ffffff;
     margin: 0rem 0rem 1rem 0rem;
 }
+#filter_tugas{
+    margin: 2rem 0rem 0rem 2rem;
+    border-radius: 10px;
+    background-color: #164863;
+    width: 70rem;
+    height: auto;
+    min-height: 10rem;
+    padding: 2rem;
+}
+#txtKelas{
+    color: #ffffff;
+}
+#txtMataPelajaran{
+    color: #ffffff;
+}
+#cb_kelas_siswa{
+    width: 15rem;
+}
+#cb_matpel_siswa{
+    width: 15rem;
+}

@@ -40,6 +40,22 @@ class akun extends Koneksi{
         return $result;
     }
 }
+class tugas extends Koneksi{
+    public function getKelas($search = "%"){
+        $stmt = $this->con->prepare("select * from kelas where nama like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getMatpel($search = "%"){
+        $stmt = $this->con->prepare("select * from mata_pelajaran where nama like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+}
 
 
 ?>
