@@ -6,17 +6,17 @@
     <link rel="stylesheet" type='text/css' href="login.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <title>LOGIN</title>
+    <title>LOGIN PAGE</title>
 </head>
 <body class=''>  
     <div id='container' class=' '>
-        <div id='content' class='float-left text-7xl mt-60 ml-40  text-violet-600'>
+        <div id='content' class='float-left text-7xl mt-60 ml-40  text-blue-950'>
             <p class=''>Welcome To</p>
             <p>EDUCONCEPT</p>
         </div>
 
         <div class='flex justify-end'>
-        <div id='aside' class=' mr-12 mt-12 text-center bg-violet-600'>
+        <div id='aside' class=' mr-12 mt-12 text-center bg-blue-900'>
             <img id='logo' class='block ml-auto mr-auto mt-10' src="img/logo-dummy.png" alt="logo-dummy">
             <br>
             <hr id='garis' class='mr-auto ml-auto mt-3 mb-10'>
@@ -46,6 +46,7 @@
                     var pass = json_result.password;
                     if(user == p_username && pass == p_password){
                         alert("SUKSES");
+                        window.location.href = "home.php";
                     }
                     else{
                         alert("LOGIN GAGAL");

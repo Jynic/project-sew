@@ -8,6 +8,7 @@ body{
   overflow: hidden;
   -webkit-clip-path: inset(0px 0px 0px 0 round 20px);
           clip-path: inset(0px 0px 0px 0 round 20px);
+  background-color: #164863;
 }
 
 #logo{
@@ -34,6 +35,7 @@ body{
 #content{
   font-family: 'Cambria';
   -webkit-text-stroke: rgb(0, 0, 0) 1px;
+  color: #164863;
 }
 
 /*
@@ -686,6 +688,11 @@ video {
   border-radius: 9999px;
 }
 
+.bg-blue-900{
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+}
+
 .bg-violet-600{
   --tw-bg-opacity: 1;
   background-color: rgb(124 58 237 / var(--tw-bg-opacity));
@@ -707,6 +714,11 @@ video {
 .text-7xl{
   font-size: 4.5rem;
   line-height: 1;
+}
+
+.text-blue-950{
+  --tw-text-opacity: 1;
+  color: rgb(23 37 84 / var(--tw-text-opacity));
 }
 
 .text-red-700{
