@@ -7,9 +7,32 @@ require_once("EduconceptClass.php");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type='text/css' href="tugas.css">
+    <link rel="stylesheet" href="tugas.css?v=1.0">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <title>Tugas</title>
+    <style>
+        table.scroll {
+			width:500px;
+			border:1px #a9c6c9 solid;
+		}
+		table.scroll thead {
+			display:table;
+			width:100%;
+			background-color: salmon;
+		}
+		table.scroll tbody {
+			display:block;
+			height:100px;
+			overflow:auto;
+			float:left;
+			width:100%;
+		}
+		table.scroll tbody tr {
+			display:table;
+			width:100%;
+		}
+    </style>
+    <title>Edit Tugas</title>
 </head>
 <body>
     <div id='nav-samping-kiri'>
@@ -58,11 +81,13 @@ require_once("EduconceptClass.php");
                     }
                 ?>
             </select>
-            <button id='btnEditTugas'>Edit</button>
+            <button id='btnBatal'>Batal</button>
+            <button id='btnSimpanTugas'>Simpan</button>
         </div>
         <div id='content_border'>
             <div id='contant_tugas'>
-                <table id='table_tugas' border="1">
+                <table id='table_tugas' border="1" class='scroll'>
+                    <thead>
                     <tr>
                     <td>No.</td>
                     <td>Nama</td>
@@ -73,19 +98,22 @@ require_once("EduconceptClass.php");
                     <td>Quiz</td>
                     <td>Aksi</td>
                     </tr>
+                </thead>
                         <?php
                             $res_tugas = $tugas->getTugas("%", "%");
                             while($row=$res_tugas->fetch_assoc()){
+                                echo "<tbody>"
                                 echo "<tr>";
                                 echo "<td>".$row['idtugas']."</td>";
-                                echo "<td>".$row['nama_siswa']."</td>";
-                                echo "<td>".$row['mata_pelajaran']."</td>";
-                                echo "<td>".$row['tugas_1']."</td>";
-                                echo "<td>".$row['tugas_2']."</td>";
-                                echo "<td>".$row['tugas_3']."</td>";
+                                echo "<td><input type='text' name='txtnamasiswa' value='".$row['nama_siswa']."' style=\"width:70px; border:1px solid #042b3f\"></td>";
+                                echo "<td><input type='text' name='txtmatapelajaran' value='".$row['mata_pelajaran']."' style=\"width:70px; border:1px solid #042b3f\"></td>";
+                                echo "<td><input type='text' name='txttugas1' value='".$row['tugas_1']."' style=\"width:20px; border:1px solid #042b3f\"></td>";
+                                echo "<td><input type='text' name='txttugas2' value='".$row['tugas_2']."' style=\"width:20px; border:1px solid #042b3f\"></td>";
+                                echo "<td><input type='text' name='txttugas3' value='".$row['tugas_3']."' style=\"width:20px; border:1px solid #042b3f\"></td>";
                                 echo "<td>".$row['quiz']."</td>";
-                                echo "<td><button id='btnDetailSiswa'>Detail Siswa</button>&nbsp &nbsp &nbsp<button id='btnHapus'>Hapus</button></td>";
+                                echo "<td><button id='btnDetailSiswa' style=\"background-color:gray\">Detail Siswa</button>&nbsp &nbsp &nbsp<button id='btnHapus' style=\"background-color:gray\" >Hapus</button></td>";
                                 echo "</tr>";
+                                echo "</tbody>"
                             }
 
 
@@ -128,9 +156,6 @@ require_once("EduconceptClass.php");
             if(nama == "Home"){
                 window.location.href = "home.php";
             }
-        });
-        $("#btnEditTugas").click(function(){
-            window.location.href="edit_tugas.php";
         });
     </script>
 </body>

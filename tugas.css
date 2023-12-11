@@ -10,7 +10,7 @@
     min-height: 40rem;
     padding-bottom: 3rem;
     float: left;
-    position: relative;
+    position: fixed;
     margin-top: 3rem;
     margin-bottom: 3rem;
     border-radius: 0px 10px 10px 0px;
@@ -103,4 +103,62 @@
 }
 #cb_matpel_siswa{
     width: 15rem;
+}
+#content_border{
+    width: 70rem;
+    min-height: 20rem;
+    height: auto;
+    background-color: #164863;
+    margin: 2rem 0rem 0rem 2rem;
+    border-radius: 10px;
+    padding: 2rem;
+    overflow: visible;
+}
+#content_tugas{
+    background-color: #ffffff;
+    font-family: 'Montserrat';
+    width: 62rem;
+    height: 5rem;
+    
+}
+#table_tugas{
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    font-size: 10px;
+    width: 66rem;
+    overflow: scroll;
+}
+#table_tugas tr td{
+    padding: 1rem 2rem 1rem 2rem;
+    border-radius: 15px;
+}
+#table_tugas tr{
+    border-radius: 15px;
+    border: 1px solid #164863;
+}
+#btnEditTugas{
+    color: #042b3f;
+    border: 2px solid #4692ba;
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 0rem 1rem 0rem 1rem;
+    float: right;
+}
+#btnDetailSiswa, #btnHapus{
+    border: 2px solid #4692ba;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+#btnBatal, #btnSimpanTugas{
+    color: #042b3f;
+    border: 2px solid #4692ba;
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 0rem 1rem 0rem 1rem;
+    float: right;
+    
+}
+#btnSimpanTugas{
+    margin: 0px 20px 0px 0px;
 }

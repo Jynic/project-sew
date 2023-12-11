@@ -55,6 +55,17 @@ class tugas extends Koneksi{
         $result = $stmt->get_result();
         return $result;
     }
+    public function getTugas($kelas='%', $matpel='%'){
+        $stmt = $this->con->prepare("select t.idtugas, t.tugas_1, t.tugas_2, t.tugas_3, t.quiz, t.siswa_username as nama_siswa, t.periode, k.nama as kelas, mp.nama as mata_pelajaran
+from tugas t inner join siswa s on t.siswa_username=s.username
+inner join kelas k on s.kelas_id = k.id
+inner join mata_pelajaran mp on t.mata_pelajaran_idmata_pelajaran=mp.idmata_pelajaran
+where k.nama like ? and mp.nama like ?;");
+        $stmt->bind_param("ss", $kelas, $matpel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
 }
 
 
