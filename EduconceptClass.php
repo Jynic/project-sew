@@ -68,5 +68,4 @@ where k.nama like ? and mp.nama like ?;");
     }
 }
 
-
 ?>

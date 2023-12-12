@@ -10,28 +10,6 @@ require_once("EduconceptClass.php");
     <link rel="stylesheet" href="tugas.css?v=1.0">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <style>
-        table.scroll {
-			width:500px;
-			border:1px #a9c6c9 solid;
-		}
-		table.scroll thead {
-			display:table;
-			width:100%;
-			background-color: salmon;
-		}
-		table.scroll tbody {
-			display:block;
-			height:100px;
-			overflow:auto;
-			float:left;
-			width:100%;
-		}
-		table.scroll tbody tr {
-			display:table;
-			width:100%;
-		}
-    </style>
     <title>Edit Tugas</title>
 </head>
 <body>
@@ -60,27 +38,41 @@ require_once("EduconceptClass.php");
         <div id='filter_tugas'>
             <p id='txtKelas'>Kelas</p>
             <select name="kelas_siswa" id="cb_kelas_siswa">
-                <option value="">--Pilih Kelas--</option>
+                <option value="%">--Pilih Kelas--</option>
                 <?php
+                    $key_kelas = "%";
+                    $key_matpel = "%";
+                    if(isset($_GET['key_kelas'])){
+                        $key_kelas = $_GET['key_kelas'];
+                    }else{
+                        $key_kelas = "%";
+                    }
+                    if(isset($_GET['key_matpel'])){
+                        $key_matpel = $_GET['key_matpel'];
+                    }else{
+                        $key_matpel = "%";
+                    }
                     $tugas = new tugas();
+                    
                     $res_kelas = $tugas->getKelas("%");
                     while($row=$res_kelas->fetch_assoc()){
-                        echo "<option value='".$row['id']."'>".$row['nama']."</option>";
+                        echo "<option value='".$row['nama']."' class='cbkelas'>".$row['nama']."</option>";
                     }
                 ?>
             </select>
             <br><br>
             <p id='txtMataPelajaran'>Mata Pelajaran</p>
             <select name="matpel_siswa" id="cb_matpel_siswa">
-                <option value="">--Pilih Kelas--</option>
+                <option value="%">--Pilih Kelas--</option>
                 <?php
                     $tugas = new tugas();
                     $res_kelas = $tugas->getMatpel("%");
                     while($row=$res_kelas->fetch_assoc()){
-                        echo "<option value='".$row['idmata_pelajaran']."'>".$row['nama']."</option>";
+                        echo "<option value='".$row['nama']."' class='cbmatpel'>".$row['nama']."</option>";
                     }
                 ?>
             </select>
+            <button id='btnCari'>Cari</button>
             <button id='btnBatal'>Batal</button>
             <button id='btnSimpanTugas'>Simpan</button>
         </div>
@@ -100,9 +92,9 @@ require_once("EduconceptClass.php");
                     </tr>
                 </thead>
                         <?php
-                            $res_tugas = $tugas->getTugas("%", "%");
+                            $res_tugas = $tugas->getTugas($key_kelas, $key_matpel);
                             while($row=$res_tugas->fetch_assoc()){
-                                echo "<tbody>"
+                                echo "<tbody>";
                                 echo "<tr>";
                                 echo "<td>".$row['idtugas']."</td>";
                                 echo "<td><input type='text' name='txtnamasiswa' value='".$row['nama_siswa']."' style=\"width:70px; border:1px solid #042b3f\"></td>";
@@ -113,7 +105,7 @@ require_once("EduconceptClass.php");
                                 echo "<td>".$row['quiz']."</td>";
                                 echo "<td><button id='btnDetailSiswa' style=\"background-color:gray\">Detail Siswa</button>&nbsp &nbsp &nbsp<button id='btnHapus' style=\"background-color:gray\" >Hapus</button></td>";
                                 echo "</tr>";
-                                echo "</tbody>"
+                                echo "</tbody>";
                             }
 
 
@@ -156,6 +148,13 @@ require_once("EduconceptClass.php");
             if(nama == "Home"){
                 window.location.href = "home.php";
             }
+        });
+        $("#btnCari").click(function(){
+            var key_mapel = $("#cb_matpel_siswa").val();
+            var key_kelas = $("#cb_kelas_siswa").val();
+            // alert("tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel);
+            window.location.href="tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel;
+            
         });
     </script>
 </body>

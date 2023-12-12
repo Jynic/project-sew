@@ -10,7 +10,7 @@
     min-height: 40rem;
     padding-bottom: 3rem;
     float: left;
-    position: fixed;
+    position: relative;
     margin-top: 3rem;
     margin-bottom: 3rem;
     border-radius: 0px 10px 10px 0px;
@@ -91,6 +91,8 @@
     height: auto;
     min-height: 10rem;
     padding: 2rem;
+    overflow: visible;
+    display: block;
 }
 #txtKelas{
     color: #ffffff;
@@ -112,14 +114,13 @@
     margin: 2rem 0rem 0rem 2rem;
     border-radius: 10px;
     padding: 2rem;
-    overflow: visible;
+    display: block;
+    overflow: scroll;
 }
 #content_tugas{
     background-color: #ffffff;
     font-family: 'Montserrat';
     width: 62rem;
-    height: 5rem;
-    
 }
 #table_tugas{
     text-align: center;
@@ -127,7 +128,6 @@
     border-radius: 15px;
     font-size: 10px;
     width: 66rem;
-    overflow: scroll;
 }
 #table_tugas tr td{
     padding: 1rem 2rem 1rem 2rem;
@@ -145,11 +145,12 @@
     padding: 0rem 1rem 0rem 1rem;
     float: right;
 }
-#btnDetailSiswa, #btnHapus{
+#btnDetailSiswa, #btnHapus, #btnCari{
     border: 2px solid #4692ba;
     border-radius: 5px;
     padding: 0.5rem 1rem 0.5rem 1rem;
 }
+
 #btnBatal, #btnSimpanTugas{
     color: #042b3f;
     border: 2px solid #4692ba;
@@ -161,4 +162,12 @@
 }
 #btnSimpanTugas{
     margin: 0px 20px 0px 0px;
+}
+#btnCari{
+    float: left;
+    color: #042b3f;
+    border: 2px solid #4692ba;
+    background-color: #ffffff;
+    border-radius: 2px;
+    padding: 0rem 1rem 0rem 1rem;
 }
