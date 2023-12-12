@@ -25,8 +25,8 @@ require_once("EduconceptClass.php");
         }
         ?>
         <div class='btnnav'><p>Home</p></div>
-        <div class='btnnav click'><p>Tugas</p></div>
-        <div class='btnnav'><p>Jadwal</p></div>
+        <div class='btnnav'><p>Tugas</p></div>
+        <div class='btnnav click'><p>Jadwal</p></div>
         <div class='btnnav'><p>Daftar</p></div>
         <div class='btnnav'><p>Tambah</p></div>
     </div>

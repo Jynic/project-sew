@@ -86,7 +86,11 @@ require_once("EduconceptClass.php");
             if(nama == "Tugas"){
                 window.location.href = "tugas.php";
             }
+            $(".opt").click(function(){
+            window.location.href="jadwalbimbel.php";
+            });
         });
+        
     </script>
 </body>
 </html>
