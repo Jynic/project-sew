@@ -29,7 +29,7 @@
             </label>
             <br>
             <button id='btnSubmit' name='btnSubmit' class='mt-40 w-40 h-14 bg-white rounded-full'>Submit</button>&nbsp &nbsp &nbsp &nbsp
-            <button id='btnRegis' name='btnRegis' class='mt-40 w-40 h-14 bg-white rounded-full' onclick="window.location.href='register.php'">Registration</button>
+            <!-- <button id='btnRegis' name='btnRegis' class='mt-40 w-40 h-14 bg-white rounded-full' onclick="window.location.href='register.php'">Registration</button> -->
         </div>
         </div>
     </div>

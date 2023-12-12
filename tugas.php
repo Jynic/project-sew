@@ -148,6 +148,9 @@ require_once("EduconceptClass.php");
             if(nama == "Home"){
                 window.location.href = "home.php";
             }
+            $(".opt").click(function(){
+            window.location.href="jadwalbimbel.php";
+            });
         });
         $("#btnEditTugas").click(function(){
             window.location.href="edit_tugas.php";

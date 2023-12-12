@@ -10,7 +10,7 @@
     min-height: 40rem;
     padding-bottom: 3rem;
     float: left;
-    position: relative;
+    position: fixed;
     margin-top: 3rem;
     margin-bottom: 3rem;
     border-radius: 0px 10px 10px 0px;
