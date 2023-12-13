@@ -72,9 +72,10 @@ require_once("EduconceptClass.php");
                     }
                 ?>
             </select>
+            <br><br>
             <button id='btnCari'>Cari</button>
             <button id='btnBatal'>Batal</button>
-            <button id='btnSimpanTugas'>Simpan</button>
+            <button id='btnSimpanTugas'>Simpan</button><br>
         </div>
         <div id='content_border'>
             <div id='contant_tugas'>
@@ -96,12 +97,12 @@ require_once("EduconceptClass.php");
                             while($row=$res_tugas->fetch_assoc()){
                                 echo "<tbody>";
                                 echo "<tr>";
-                                echo "<td>".$row['idtugas']."</td>";
-                                echo "<td><input type='text' name='txtnamasiswa' value='".$row['nama_siswa']."' style=\"width:70px; border:1px solid #042b3f\"></td>";
-                                echo "<td><input type='text' name='txtmatapelajaran' value='".$row['mata_pelajaran']."' style=\"width:70px; border:1px solid #042b3f\"></td>";
-                                echo "<td><input type='text' name='txttugas1' value='".$row['tugas_1']."' style=\"width:20px; border:1px solid #042b3f\"></td>";
-                                echo "<td><input type='text' name='txttugas2' value='".$row['tugas_2']."' style=\"width:20px; border:1px solid #042b3f\"></td>";
-                                echo "<td><input type='text' name='txttugas3' value='".$row['tugas_3']."' style=\"width:20px; border:1px solid #042b3f\"></td>";
+                                echo "<td class='txtid'>".$row['idtugas']."</td>";
+                                echo "<td>".$row['nama_siswa']."</td>";
+                                echo "<td>".$row['mata_pelajaran']."</td>";
+                                echo "<td><input type='text' name='txttugas1' value='".$row['tugas_1']."' style=\"width:20px; border:1px solid #042b3f\" class='txt_tugas1'></td>";
+                                echo "<td><input type='text' name='txttugas2' value='".$row['tugas_2']."' style=\"width:20px; border:1px solid #042b3f\" class='txt_tugas2'></td>";
+                                echo "<td><input type='text' name='txttugas3' value='".$row['tugas_3']."' style=\"width:20px; border:1px solid #042b3f\" class='txt_tugas3'></td>";
                                 echo "<td>".$row['quiz']."</td>";
                                 echo "<td><button id='btnDetailSiswa' style=\"background-color:gray\">Detail Siswa</button>&nbsp &nbsp &nbsp<button id='btnHapus' style=\"background-color:gray\" >Hapus</button></td>";
                                 echo "</tr>";
@@ -155,6 +156,26 @@ require_once("EduconceptClass.php");
             // alert("tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel);
             window.location.href="tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel;
             
+        });
+        $("#btnSimpanTugas").click(function(){
+            $("#table_tugas tbody tr").each(function(){
+                var id = $(this).find(".txtid").html();
+                var t1 = $(this).find(".txt_tugas1").val();
+                var t2 = $(this).find(".txt_tugas2").val();
+                var t3 = $(this).find(".txt_tugas3").val();
+                $.post("update_nilai_ajax.php", {id:id, t1:t1, t2:t2, t3:t3}).done(function(data){
+                    if(data == "Update Gagal"){
+                        alert("Update Gagal");
+                    }else{
+                        // var jsonResult = JSON.parse(data);
+                        alert("Sukses Update Data !!!");
+                        window.location.href = "tugas.php";
+                    }
+                })
+            });
+        });
+        $("#btnBatal").click(function(){
+            window.location.href = "tugas.php";
         });
     </script>
 </body>
