@@ -67,5 +67,68 @@ where k.nama like ? and mp.nama like ?;");
         return $result;
     }
 }
+class kelas extends Koneksi{
+    public function CreateKelas($nkelas){
+        $sql = "INSERT INTO kelas (nama) VALUES (?)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bind_param("s", $nkelas);
+        $stmt->execute()
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function UpdateKelas($idkelas, $nkelas){
+        $sql = "UPDATE kelas SET nama = ? WHERE id = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("is", $idkelas, $nkelas);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
+    public function DeleteKelas($idkelas=0){
+        $sql = "DELETE FROM kelas WHERE id = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("i", $idkelas);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+}
+
+class sesi extends Koneksi{
+    public function CreateSesi($nsesi, $wktmulai, $wktselesai){
+        $sql = "INSERT INTO sesi (nama, waktu_mula, waktu_selesai) VALUES (?, ?, ?)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bind_param("sss", $nsesi, $wktmulai, $wktselesai);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function UpdateSesi($idsesi, $nsesi, $wktmulai, $wktselesai){
+        $sql = "UPDATE sesi SET nama = ?, waktu_mula = ?, waktu_selesai = ? WHERE id = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("isss", $idsesi, $nsesi, $wktmulai, $wktselesai);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
+    public function DeleteSesi($idsesi=0){
+        $sql = "DELETE FROM sesi WHERE id = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("i", $idsesi);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+}
 
 ?>
