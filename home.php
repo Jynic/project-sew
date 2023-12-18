@@ -63,8 +63,8 @@ require_once("EduconceptClass.php");
             var optElement = $(this).find(".opt");
             optElement.remove();
             if(nama == "Daftar" && optElement.length === 0){
-                $(this).append("<span class='opt'><p>Daftar Siswa</p></span>");
-                $(this).append("<span class='opt'><p>Daftar Tentor</p></span>");
+                $(this).append("<span class='opt' value='dafsiswa'><p>Daftar Siswa</p></span>");
+                $(this).append("<span class='opt' value='daftentor'><p>Daftar Tentor</p></span>");
                 $(this).append("<span class='opt'><p>Daftar Mata Pelajaran</p></span>");
                 $(this).append("<span class='opt'><p>Daftar Kelas</p></span>");
                 $(this).append("<span class='opt'><p>Daftar Sesi</p></span>");
@@ -72,7 +72,7 @@ require_once("EduconceptClass.php");
                 optElement.remove();
             }
             if(nama == "Jadwal" && optElement.length === 0){
-                $(this).append("<span class='opt'><p>Jadwal Bimbel</p></span>");
+                $(this).append("<span class='opt' value='jadwalbimbel'><p>Jadwal Bimbel</p></span>");
                 $(this).append("<span class='opt'><p>Jadwal Tentor</p></span>");
             }else{
                 optElement.remove();
@@ -87,7 +87,13 @@ require_once("EduconceptClass.php");
                 window.location.href = "tugas.php";
             }
             $(".opt").click(function(){
-            window.location.href="jadwalbimbel.php";
+                var vale = $(this).text();
+                if(vale == "Daftar Siswa"){
+                    window.location.href="daftarsiswa.php";
+                }
+                if(vale=="jadwalbimbel"){
+                    window.location.href="jadwalbimbel.php";
+                }
             });
         });
         

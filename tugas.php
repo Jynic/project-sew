@@ -149,7 +149,13 @@ require_once("EduconceptClass.php");
                 window.location.href = "home.php";
             }
             $(".opt").click(function(){
-            window.location.href="jadwalbimbel.php";
+                var vale = $(this).text();
+                if(vale == "Daftar Siswa"){
+                    window.location.href="daftarsiswa.php";
+                }
+                if(vale=="jadwalbimbel"){
+                    window.location.href="jadwalbimbel.php";
+                }
             });
         });
         $("#btnEditTugas").click(function(){
