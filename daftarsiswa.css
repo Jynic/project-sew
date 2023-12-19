@@ -72,3 +72,109 @@
     color: #ffffff;
     font-weight: bold;
 }
+#filter-siswa{
+    margin: 0rem 0rem 0rem 2rem ;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: visible;
+    display: block;
+    padding: 3rem 0rem 3rem 3rem;
+    width: 70rem;
+    position: relative;
+    border: 1px solid #164863;
+    border-radius: 10px;
+}
+#btnSortir{
+    border: 1px solid #164863;
+    background-color: #164863;
+    color: #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;   
+    top: 5.3rem;
+    left: 26rem;
+    padding: 0.5rem;
+}
+select{
+    width: 15rem;
+    border: 1px solid #164863;
+    border-radius: 10px;
+    color: #ffffff;
+}
+#jumlah-siswa{
+    background-color: #164863;
+    color: #ffffff;
+    padding: 1rem 3rem 1rem 3rem;
+    margin: 1rem 0rem 0rem 2rem ;
+    width: 70rem;
+    overflow: visible;
+    display: block;
+    border-radius: 10px;
+}
+#content-siswa{
+    background-color: #164863;
+    color: #ffffff;
+    padding: 1rem 3rem 1rem 1rem;
+    margin: 1rem 0rem 0rem 2rem ;
+    width: 70rem;
+    height: auto;
+    min-height: 18.5rem;
+    overflow: visible;
+    display: block;
+    border-radius: 10px;
+}
+#table_siswa{
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    font-size: 10px;
+    width: 68rem;
+    color: #164863;
+}
+#table_siswa tr td{
+    padding: 1rem 1rem 1rem 1rem;
+
+}
+#table_siswa tr{
+    border: 1px solid #164863;
+}
+.btnEdit, .btnHapus{
+    border: 2px solid #4692ba;
+    border-radius: 5px;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+#content-edit{
+    font-family: "Montserrat";
+    margin: 0rem 0rem 0rem 2rem ;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: visible;
+    display: block;
+    padding: 3rem 0rem 3rem 3rem;
+    width: 70rem;
+    position: relative;
+    border: 1px solid #164863;
+    border-radius: 10px;
+}
+.input{
+    border: 1px solid #164863;
+    border-radius: 10px;
+    width: 20rem;
+}
+.lbl{
+    margin: 0rem 3rem 0rem 1rem;
+}
+#table-edit tr td{
+    padding: 0.5rem 2rem 0.5rem 2rem;
+}
+#btnSimpan, #btnBatal{
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+}
+#btnSimpan{
+    background-color: #02ff1b;
+}
+#btnBatal{
+    background-color: #ff1702;
+}

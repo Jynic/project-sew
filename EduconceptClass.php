@@ -73,7 +73,7 @@ class kelas extends Koneksi{
         $stmt = $this->con->prepare($sql);
 
         $stmt->bind_param("s", $nkelas);
-        $stmt->execute()
+        $stmt->execute();
         $result = $stmt->get_result();
         return $result;
     }
@@ -129,6 +129,61 @@ class sesi extends Koneksi{
 
         return $result;
     }
+}
+class daftarsiswa extends Koneksi{
+    public function getKelas($search = "%"){
+        $stmt = $this->con->prepare("select * from kelas where nama like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getMatpel($search = "%"){
+        $stmt = $this->con->prepare("select * from mata_pelajaran where nama like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getSesi($search = "%"){
+        $stmt = $this->con->prepare("select * from sesi where nama like ?");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getJumlahSiswa(){
+        $result = $this->con->query("select count(*) as jumlah from siswa");
+        return $result; 
+    }
+    public function getSiswa(){
+        $result = $this->con->query("select s.username, s.nama as nama, k.nama as kelas, s.kelas_id, s.tanggal_lahir, 
+        s.nama_sekolah, s.email, s.no_hp, s.password from siswa s 
+        inner join kelas k on s.kelas_id=k.id; ");
+        return $result;
+    }
+    public function getSiswaFilter($kelas="%", $matpel="%", $sesi="%"){
+        $stmt = $this->con->prepare("select distinct s.username, s.nama as nama, k.nama as kelas, s.kelas_id, s.tanggal_lahir, 
+        s.nama_sekolah, s.email, s.no_hp, s.password, mp.nama, ss.nama
+        from siswa s 
+        inner join kelas k on s.kelas_id=k.id 
+        inner join jadwal_bimbel_has_siswa jbs on s.username = jbs.siswa_username
+        inner join jadwal_bimbel jb on jbs.jadwal_bimbel_idjadwal_bimbel = jb.idjadwal_bimbel
+        inner join mata_pelajaran mp on jb.mata_pelajaran_idmata_pelajaran=mp.idmata_pelajaran
+        inner join sesi ss on jb.sesi_idsesi=ss.idsesi where k.nama=? and mp.nama=? and ss.nama=?;");
+        $stmt->bind_param("sss", $kelas, $matpel, $sesi);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function updateSiswa($username, $kelas_id, $nama, $nama_sekolah, $email, $nohp, $password, $tanggal_lahir){
+        $stmt=$this->con->prepare("update siswa set username = ?, kelas_id = ?, nama=?, nama_sekolah=?, email=?, no_hp=?, password=?, tanggal_lahir=?");
+        $stmt->bind_param("sissssss", $username, $kelas_id, $nama, $nama_sekolah, $email, $nohp, $password, $tanggal_lahir);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    
 }
 
 ?>

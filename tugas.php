@@ -168,6 +168,9 @@ require_once("EduconceptClass.php");
             window.location.href="tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel;
             
         });
+        if (performance.navigation.type === 1) {
+        history.replaceState({}, document.title, "tugas.php");
+        }
     </script>
 </body>
 </html>
