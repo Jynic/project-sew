@@ -14,7 +14,7 @@ class jadwal extends Koneksi{
         parent::__construct();
     } 
     public function getJadwal($search='%'){
-        $stmt = $this->con->prepare("select j.hari, j.tanggal_waktu, s.waktu_mula, s.waktu_selesai, mp.nama as mata_pelajaran, k.nama as kelas
+        $stmt = $this->con->prepare("select j.hari, j.tanggal_waktu, s.waktu_mula, s.waktu_selesai, mp.nama as mata_pelajaran, k.kelas as kelas
         from jadwal_bimbel j inner join sesi s on j.sesi_idsesi = s.idsesi 
         inner join mata_pelajaran mp on j.mata_pelajaran_idmata_pelajaran = mp.idmata_pelajaran
         inner join kelas k on j.kelas_id = k.id where j.hari like ?");
@@ -42,7 +42,7 @@ class akun extends Koneksi{
 }
 class tugas extends Koneksi{
     public function getKelas($search = "%"){
-        $stmt = $this->con->prepare("select * from kelas where nama like ?;");
+        $stmt = $this->con->prepare("select * from kelas where kelas like ?;");
         $stmt->bind_param("s", $search);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -56,11 +56,11 @@ class tugas extends Koneksi{
         return $result;
     }
     public function getTugas($kelas='%', $matpel='%'){
-        $stmt = $this->con->prepare("select t.idtugas, t.tugas_1, t.tugas_2, t.tugas_3, t.quiz, t.siswa_username as nama_siswa, t.periode, k.nama as kelas, mp.nama as mata_pelajaran
+        $stmt = $this->con->prepare("select t.idtugas, t.tugas_1, t.tugas_2, t.tugas_3, t.quiz, t.siswa_username as nama_siswa, t.periode, k.kelas as kelas, mp.nama as mata_pelajaran
 from tugas t inner join siswa s on t.siswa_username=s.username
 inner join kelas k on s.kelas_id = k.id
 inner join mata_pelajaran mp on t.mata_pelajaran_idmata_pelajaran=mp.idmata_pelajaran
-where k.nama like ? and mp.nama like ?;");
+where k.kelas like ? and mp.nama like ?;");
         $stmt->bind_param("ss", $kelas, $matpel);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -68,8 +68,24 @@ where k.nama like ? and mp.nama like ?;");
     }
 }
 class kelas extends Koneksi{
+    public function getRuang($search = "%"){
+        $stmt = $this->con->prepare("select * from kelas where ruang like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function getKelasFilter($kelas="%", $ruang="%"){
+        $stmt = $this->con->prepare("select distinct kelas, ruang from kelas where kelas = ? and ruang = ?;");
+        $stmt->bind_param("ss", $kelas, $ruang);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
     public function CreateKelas($nkelas){
-        $sql = "INSERT INTO kelas (nama) VALUES (?)";
+        $sql = "INSERT INTO kelas (kelas) VALUES (?)";
         $stmt = $this->con->prepare($sql);
 
         $stmt->bind_param("s", $nkelas);
@@ -79,7 +95,7 @@ class kelas extends Koneksi{
     }
 
     public function UpdateKelas($idkelas, $nkelas){
-        $sql = "UPDATE kelas SET nama = ? WHERE id = ?";
+        $sql = "UPDATE kelas SET kelas = ? WHERE id = ?";
         $stmt = $this->con->prepare($sql);
         $stmt->bind_param("is", $idkelas, $nkelas);
         $stmt->execute();
@@ -139,7 +155,7 @@ class sesi extends Koneksi{
 }
 class daftarsiswa extends Koneksi{
     public function getKelas($search = "%"){
-        $stmt = $this->con->prepare("select * from kelas where nama like ?;");
+        $stmt = $this->con->prepare("select * from kelas where kelas like ?;");
         $stmt->bind_param("s", $search);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -164,20 +180,20 @@ class daftarsiswa extends Koneksi{
         return $result; 
     }
     public function getSiswa(){
-        $result = $this->con->query("select s.username, s.nama as nama, k.nama as kelas, s.kelas_id, s.tanggal_lahir, 
+        $result = $this->con->query("select s.username, s.nama as nama, k.kelas as kelas, s.kelas_id, s.tanggal_lahir, 
         s.nama_sekolah, s.email, s.no_hp, s.password from siswa s 
         inner join kelas k on s.kelas_id=k.id; ");
         return $result;
     }
     public function getSiswaFilter($kelas="%", $matpel="%", $sesi="%"){
-        $stmt = $this->con->prepare("select distinct s.username, s.nama as nama, k.nama as kelas, s.kelas_id, s.tanggal_lahir, 
+        $stmt = $this->con->prepare("select distinct s.username, s.nama as nama, k.kelas as kelas, s.kelas_id, s.tanggal_lahir, 
         s.nama_sekolah, s.email, s.no_hp, s.password, mp.nama, ss.nama
         from siswa s 
         inner join kelas k on s.kelas_id=k.id 
         inner join jadwal_bimbel_has_siswa jbs on s.username = jbs.siswa_username
         inner join jadwal_bimbel jb on jbs.jadwal_bimbel_idjadwal_bimbel = jb.idjadwal_bimbel
         inner join mata_pelajaran mp on jb.mata_pelajaran_idmata_pelajaran=mp.idmata_pelajaran
-        inner join sesi ss on jb.sesi_idsesi=ss.idsesi where k.nama=? and mp.nama=? and ss.nama=?;");
+        inner join sesi ss on jb.sesi_idsesi=ss.idsesi where k.kelas=? and mp.nama=? and ss.nama=?;");
         $stmt->bind_param("sss", $kelas, $matpel, $sesi);
         $stmt->execute();
         $result = $stmt->get_result();
