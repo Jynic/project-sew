@@ -100,6 +100,13 @@ class kelas extends Koneksi{
 }
 
 class sesi extends Koneksi{
+    public function getSesi($search = "%"){
+        $stmt = $this->con->prepare("select * from sesi where nama like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
     public function CreateSesi($nsesi, $wktmulai, $wktselesai){
         $sql = "INSERT INTO sesi (nama, waktu_mula, waktu_selesai) VALUES (?, ?, ?)";
         $stmt = $this->con->prepare($sql);
