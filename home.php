@@ -94,6 +94,9 @@ require_once("EduconceptClass.php");
                 if(vale=="jadwalbimbel"){
                     window.location.href="jadwalbimbel.php";
                 }
+                if(vale == "Daftar Sesi"){
+                    window.location.href="daftarsesi.php";
+                }
                 if(vale== "Daftar Kelas"){
                     window.location.href="daftarkelas.php";
                 }

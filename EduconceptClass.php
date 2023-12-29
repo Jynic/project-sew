@@ -76,9 +76,9 @@ class kelas extends Koneksi{
         return $result;
     }
 
-    public function getKelasFilter($kelas="%", $ruang="%"){
-        $stmt = $this->con->prepare("select distinct kelas, ruang from kelas where kelas = ? and ruang = ?;");
-        $stmt->bind_param("ss", $kelas, $ruang);
+    public function getKelasFilter($ruang="%"){
+        $stmt = $this->con->prepare("select distinct ruang from kelas where ruang = ?;");
+        $stmt->bind_param("s", $ruang);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;
@@ -119,6 +119,27 @@ class sesi extends Koneksi{
     public function getSesi($search = "%"){
         $stmt = $this->con->prepare("select * from sesi where nama like ?;");
         $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getMulai($search = "%"){
+        $stmt = $this->con->prepare("select * from sesi where waktu_mula like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getSelesai($search = "%"){
+        $stmt = $this->con->prepare("select * from sesi where waktu_selesai like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getSesiFilter($waktu_mul="%", $waktu_sel="%"){
+        $stmt = $this->con->prepare("select distinct waktu_mula, waktu_selesai from sesi where waktu_mula = ? and waktu_selesai = ?;");
+        $stmt->bind_param("ss", $waktu_mul, $waktu_sel);
         $stmt->execute();
         $result = $stmt->get_result();
         return $result;

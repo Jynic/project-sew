@@ -1,18 +1,19 @@
 <?php
 require_once("EduconceptClass.php");
-$id = $_GET['id'];
-$ruang = $_GET['ruang'];
-$kelas=$_GET['kelas'];
+$id = $_GET['idss'];
+$nama = $_GET['nama'];
+$waktu_muls=$_GET['waktu_mula'];
+$waktu_sels=$_GET['waktu_selesai'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="daftarkelas.css">
+    <link rel="stylesheet" type='text/css' href="daftarsesi.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <title>Edit Kelas</title>
+    <title>Edit Sesi</title>
 </head>
 <body>
     <div id='nav-samping-kiri'>
@@ -33,19 +34,25 @@ $kelas=$_GET['kelas'];
     </div>
     <div id='header'>
         <div>
-            <p id='home-admin'>Edit Kelas</p>
+            <p id='home-admin'>Edit Sesi</p>
         </div>
     </div>
     <div id='container'>
         <div id='content-edit'>
             <table cellspacing=5 id='table-edit'>
                 <tr>
-                    <td><label class='lbl'>Nama Kelas</label></td>
-                    <td><label class='lbl'>Nama Ruang</label></td>
+                    <td><label class='lbl'>Waktu Mulai</label></td>
+                    <td><label class='lbl'>Waktu Selesai</label></td>
                 </tr>
                 <tr>
-                    <td><input type="text" value='<?php echo $kelas ;?>' placeholder='Masukan Kelas' id='txtkelas' class='input'></td>
-                    <td><input type="text" value='<?php echo $ruang ;?>' class='input' placeholder='Masukan Ruang' id='txtruang'></td>
+                    <td><input type="time" class='input' value='<?php echo date("H:i:s", strtotime($waktu_muls)); ?>' id='txtmulai'></td>
+                    <td><input type="time" class='input' value='<?php echo date("H:i:s", strtotime($waktu_sels)); ?>' id='txtselesai'></td>
+                </tr>
+                <tr>
+                    <td><label class='lbl'>Nama sesi</label></td>
+                </tr>
+                <tr>
+                    <td><input type="text" value='<?php echo $nama ;?>' class='input' placeholder='Masukan Nama Sesi' id='txtnama'></td>
                 </tr>
                 <tr>
                     <td><label class='lbl'>ID</label></td>
@@ -99,16 +106,17 @@ $kelas=$_GET['kelas'];
             });
         });
         $("#btnSimpan").click(function(){
-            var id = $("#txtid").val();
-            var kelass = $("#txtkelas").val();
-            var ruangs = $("#txtruang").val();
-            $.post("update-kelas-ajax.php", {id:id,
-            kelas:kelass, ruang:ruangs}).done(function(data){
+            var ids = $("#txtid").val();
+            var namas = $("#txtnama").val();
+            var wkt_muls = $("#txtmulai").val();
+            var wkt_sls = $("#txtselesai").val();
+            $.post("update-sesi-ajax.php", {id:ids,
+            nama:namas, waktu_muls:wkt_muls, waktu_sels:wkt_sls}).done(function(data){
                 if(data == "Update Gagal"){
                     alert(data);
                 }else{
                     alert(data);
-                    window.location.href="daftarkelas.php";
+                    window.location.href="daftarsesi.php";
                 }
             })
         });
