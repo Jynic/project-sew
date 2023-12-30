@@ -112,6 +112,9 @@ $kelas=$_GET['kelas'];
                 }
             })
         });
+        $("#btnBatal").click(function(){
+            window.location.href="daftarsesi.php";
+        });
     </script>
 </body>
 </html>

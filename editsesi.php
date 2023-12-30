@@ -120,6 +120,9 @@ $waktu_sels=$_GET['waktu_selesai'];
                 }
             })
         });
+        $("#btnBatal").click(function(){
+            window.location.href="daftarsesi.php";
+        });
     </script>
 </body>
 </html>
