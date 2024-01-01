@@ -50,8 +50,7 @@ require_once("EduconceptClass.php");
                             $sesis = "%";
                             $waktu_mul = "%";
                             $waktu_sel = "%";
-                            if(isset($_GET['sesi'])){
-                                $sesis = $_GET['sesi'];
+                            if(isset($_GET['waktu_mula'])){
                                 $waktu_mul = $_GET['waktu_mula'];
                                 $waktu_sel = $_GET['waktu_selesai'];
                             }
@@ -94,7 +93,7 @@ require_once("EduconceptClass.php");
                 
                     <?php 
                         $res_sesi = $sesi->getSesi();
-                        if(isset($_GET['nama'])){
+                        if(isset($_GET['sesis'])){
                             $res_sesi = $sesi->getSesiFilter($waktu_mul, $waktu_sel);
                         }
                         $unik = 1;

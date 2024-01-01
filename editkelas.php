@@ -48,10 +48,7 @@ $kelas=$_GET['kelas'];
                     <td><input type="text" value='<?php echo $ruang ;?>' class='input' placeholder='Masukan Ruang' id='txtruang'></td>
                 </tr>
                 <tr>
-                    <td><label class='lbl'>ID</label></td>
-                </tr>
-                <tr>
-                <td><input type="text" value='<?php echo $id ;?>' class='input' placeholder='ID' id='txtid'></td>
+                <td><input type="hidden" value='<?php echo $id ;?>' class='input' placeholder='ID' id='txtid'></td>
                     <td>
                         <button id='btnSimpan'>Simpan</button>&nbsp
                         <button id='btnBatal'>Batal</button>
@@ -102,6 +99,7 @@ $kelas=$_GET['kelas'];
             var id = $("#txtid").val();
             var kelass = $("#txtkelas").val();
             var ruangs = $("#txtruang").val();
+            alert(id + kelass + ruangs);
             $.post("update-kelas-ajax.php", {id:id,
             kelas:kelass, ruang:ruangs}).done(function(data){
                 if(data == "Update Gagal"){

@@ -50,7 +50,7 @@ require_once("EduconceptClass.php");
                             $ruang = new kelas();
                             $kelas = "%";
                             $ruangan = "%";
-                            if(isset($_GET['kelas'])){
+                            if(isset($_GET['ruangan'])){
                                 $kelas = $_GET['kelas'];
                                 $ruangan = $_GET['ruangan'];
                             }
@@ -76,7 +76,7 @@ require_once("EduconceptClass.php");
                 
                     <?php 
                         $res_kelas = $siswa->getKelas();
-                        if(isset($_GET['kelas'])){
+                        if(isset($_GET['ruangan'])){
                             $res_kelas = $ruang->getKelasFilter($ruangan);
                         }
                         $unik = 1;
@@ -150,7 +150,7 @@ require_once("EduconceptClass.php");
         $("#btnSortir").click(function(){
             var kelas = $("#cbkelas").val();
             var ruangan = $("#cbruang").val();
-            window.location.href="daftarkelas.php?ruang="+ruangan;//ini kok gabisaaaaa
+            window.location.href="daftarkelas.php?ruangan="+ruangan;//ini kok gabisaaaaa
         });
         if (performance.navigation.type === 1) {
         history.replaceState({}, document.title, "daftarkelas.php");
