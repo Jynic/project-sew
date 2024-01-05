@@ -12,8 +12,8 @@
 				<div class="card">
 					<div class="card-header">
 						<b>Jadwal bimbel</b>
-						<!-- <span class="float:right"><button class="btn btn-primary btn-block btn-sm col-sm-2 float-right"  id="new_schedule"> -->
-							<span class="float:right"><button class="btn btn-primary btn-block btn-sm col-sm-2 float-right" >
+						<span class="float:right"><button class="btn btn-primary btn-block btn-sm col-sm-2 float-right"  id="new_schedule">
+							<!-- <span class="float:right"><button class="btn btn-primary btn-block btn-sm col-sm-2 float-right" > -->
 					<i class="fa fa-plus"></i> Jadwal baru
 				</button></span>
 					</div>
@@ -23,12 +23,12 @@
 							<div class=" col-md-4">
 							<select name="faculty_id" id="faculty_id" class="custom-select select2">
 								<option value=""></option>
-							<!-- <?php 
+							 <?php 
 								$faculty = $conn->query("SELECT *,concat(lastname,', ',firstname,' ',middlename) as name FROM faculty order by concat(lastname,', ',firstname,' ',middlename) asc");
 								while($row= $faculty->fetch_array()):
 							?>
 								<option value="<?php echo $row['id'] ?>"><?php echo ucwords($row['name']) ?></option>
-							<?php endwhile; ?> -->
+							<?php endwhile; ?>
 							</select>
 							</div>
 						</div>

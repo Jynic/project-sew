@@ -174,6 +174,51 @@ class sesi extends Koneksi{
         return $result;
     }
 }
+class mataPelajaran extends Koneksi{
+    public function getMataPelajaran($search = "%"){
+        $stmt = $this->con->prepare("select * from mata_pelajaran where nama like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function getSesiFilter($waktu_mul="%", $waktu_sel="%"){
+        $stmt = $this->con->prepare("select distinct waktu_mula, waktu_selesai from sesi where waktu_mula = ? and waktu_selesai = ?;");
+        $stmt->bind_param("ss", $waktu_mul, $waktu_sel);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+    public function CreateSesi($nsesi, $wktmulai, $wktselesai){
+        $sql = "INSERT INTO sesi (nama, waktu_mula, waktu_selesai) VALUES (?, ?, ?)";
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bind_param("sss", $nsesi, $wktmulai, $wktselesai);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    }
+
+    public function UpdateSesi($idsesi, $nsesi, $wktmulai, $wktselesai){
+        $sql = "UPDATE sesi SET nama = ?, waktu_mula = ?, waktu_selesai = ? WHERE id = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("isss", $idsesi, $nsesi, $wktmulai, $wktselesai);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+
+    public function DeleteSesi($idsesi=0){
+        $sql = "DELETE FROM sesi WHERE id = ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("i", $idsesi);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result;
+    }
+}
 class daftarsiswa extends Koneksi{
     public function getKelas($search = "%"){
         $stmt = $this->con->prepare("select * from kelas where kelas like ?;");
