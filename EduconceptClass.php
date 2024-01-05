@@ -242,6 +242,12 @@ class daftartentor extends Koneksi{
         inner join mata_pelajaran m on mp.mata_pelajaran_idmata_pelajaran = m.idmata_pelajaran where m.nama=?;");
         return $result;
     }
+    public function updateTentor($username, $nama, $lulusan, $email, $matpel){
+        $stmt = $this->con->prepare("update tentor set username = ?, nama=?, lulusan=?, email=? where username = ?;");
+        $stmt->bind_param("ssss", $username, $nama, $lulusan, $email);
+        $stmt->execute();
+    }
+
 }
 class tambahsiswa extends Koneksi{
     public function getKelas($search = "%"){

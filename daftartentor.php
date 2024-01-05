@@ -84,7 +84,7 @@ require_once("EduconceptClass.php");
                             echo "<td class='p_nama'>".$row['nama']."</td>";
                             echo "<td class='p_lulusan' value='".$row['lulusan']."'>".$row['lulusan']."</td>";
                             echo "<td class='p_email'>".$row['email']."</td>";
-                            echo "<td class='p_nohp'>".$row['mata_pelajaran']."</td>";
+                            echo "<td class='p_matpel'>".$row['mata_pelajaran']."</td>";
                             echo "<td><button class='btnEdit' value='$unik'>Edit</button>&nbsp &nbsp &nbsp<button class='btnHapus' value='$unik'>Hapus</button></td>";
                             echo "</tr>";
                             $unik +=1;
@@ -172,17 +172,12 @@ require_once("EduconceptClass.php");
                     var nama = $(this).find(".p_nama").html();
                     var kelas = $(this).find(".p_lulusan").html();
                     var tanggal_lahir = $(this).find(".p_email").html();
-                    var sekolah = $(this).find(".p_nohp").html();
-                    var email = $(this).find(".p_tgllahir").html();
-                    var nohp = $(this).find(".p_nohp").html();
-                    var password = $(this).find(".p_password").html();
-                    var kelasid = $(this).find(".p_kelas").attr('value');
-                    alert(kelasid);
-                    window.location.href="editsiswa.php?username=" +
-                    username + "&nama=" + nama + "&kelas=" + kelas +
-                    "&tanggal_lahir=" + tanggal_lahir +
-                    "&sekolah=" + sekolah + "&email=" + email +
-                    "&nohp=" + nohp + "&p=" + password+"&kid="+kelasid;
+                    var sekolah = $(this).find(".p_matpel").html();
+                    alert(kelas);
+                    window.location.href="edittentor.php?username=" +
+                    username + "&nama=" + nama + "&lulusan=" + kelas +
+                    "&email=" + tanggal_lahir +
+                    "&matpel=" + sekolah;
 
                 }
             });
