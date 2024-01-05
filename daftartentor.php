@@ -6,7 +6,7 @@ require_once("EduconceptClass.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="daftarsiswa.css">
+    <link rel="stylesheet" type='text/css' href="daftartentor.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     </style>
@@ -60,16 +60,6 @@ require_once("EduconceptClass.php");
                 </tr>
             </table>
             <button id='btnSortir'>Sortir</button>
-        </div>
-        <div id='jumlah-siswa'>
-            <p>Total Siswa : 
-                <?php 
-                    $data_siswa = $siswa->getJumlahSiswa();
-                    while($row=$data_siswa->fetch_assoc()){
-                        echo $row['jumlah'];
-                    }
-                ?>  
-            </p>
         </div>
         <div id='content-siswa'>
             <table id='table_siswa'>
@@ -170,7 +160,7 @@ require_once("EduconceptClass.php");
             window.location.href="daftartentor.php?matpel="+matpel;
         });
         if (performance.navigation.type === 1) {
-        history.replaceState({}, document.title, "daftarsiswa.php");
+        history.replaceState({}, document.title, "daftartentor.php");
         }
         $(".btnEdit").click(function(){
             var id = $(this).val();
