@@ -18,7 +18,7 @@ require_once("EduconceptClass.php");
         $akun = new akun();
         $res_akun = $akun->getProfil("%");
         while($row = $res_akun->fetch_assoc()){
-            $user_db = $row['username'];
+            $user_db = $row['username'];    
             echo "<div id='namaprofil'><p>$user_db</p></div>";
         }
         ?>
@@ -88,14 +88,21 @@ require_once("EduconceptClass.php");
             }
             $(".opt").click(function(){
                 var vale = $(this).text();
+                alert(vale);
                 if(vale == "Daftar Siswa"){
                     window.location.href="daftarsiswa.php";
                 }
-                if(vale=="jadwalbimbel"){
+                if(vale=="Jadwal Bimbel"){
                     window.location.href="jadwalbimbel.php";
+                }
+                if(vale == "Daftar Tentor"){
+                    window.location.href="daftartentor.php";
                 }
                 if(vale == "Daftar Sesi"){
                     window.location.href="daftarsesi.php";
+                }
+                if(vale == "Tambah Tentor"){
+                    window.location.href="tambahtentor.php";
                 }
                 if(vale== "Daftar Kelas"){
                     window.location.href="daftarkelas.php";

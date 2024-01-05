@@ -95,6 +95,17 @@
     left: 26rem;
     padding: 0.5rem;
 }
+#btnTambah{
+    border: 1px solid #164863;
+    background-color: #164863;
+    color: #ffffff;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1;   
+    top: 5.3rem;
+    left: 26rem;
+    padding: 0.5rem;
+}
 select{
     width: 15rem;
     border: 1px solid #164863;

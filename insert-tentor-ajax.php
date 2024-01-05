@@ -1,7 +1,7 @@
 <?php 
 $username = $_POST['username'];
 $nama = $_POST['nama'];
-$tgl_lahir = $_POST['tgl_lahir'];
+$tgl_lahir = $_POST['tanggal_lahir'];
 $asaluniv = $_POST['asaluniv'];
 $email = $_POST['email'];
 $nohp = $_POST['nohp'];

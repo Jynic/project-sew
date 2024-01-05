@@ -64,6 +64,7 @@ require_once("EduconceptClass.php");
                 </tr>
             </table>
             <button id='btnSortir'>Sortir</button>
+            <button id='btnTambah'>Tambah</button>
         </div>
         <div id='content-kelas'>
             <table id='table_kelas'>
@@ -190,6 +191,9 @@ require_once("EduconceptClass.php");
                     }
                 }
             });
+        });
+        $("#btnTambah").click(function(){
+            window.location.href="tambahkelas.php";
         });
     </script>
 </body>

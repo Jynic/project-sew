@@ -6,7 +6,7 @@ require_once("EduconceptClass.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="daftarsiswa.css">
+    <link rel="stylesheet" type='text/css' href="tambahsiswa.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     </style>
@@ -17,7 +17,7 @@ require_once("EduconceptClass.php");
     <img src="img/Dolomites.jpg" alt="Foto Profil" id='FotoProfilNav'>
         <?php
         $akun = new akun();
-        $res_akun = $akun->getProfil("%");
+        $res_akun = $akun->getProfil("ivano");
         while($row = $res_akun->fetch_assoc()){
             $user_db = $row['username'];
             echo "<div id='namaprofil'><p>$user_db</p></div>";
@@ -31,121 +31,58 @@ require_once("EduconceptClass.php");
     </div>
     <div id='header'>
         <div>
-            <p id='home-admin'>Daftar Siswa</p>
+            <p id='home-admin'>Tambah Siswa</p>
         </div>
     </div>
     <div id='container'>
-        <div id='filter-siswa'>
-
-            <table>
-                <tr>
-                    <td>
-                    <label>Kelas : </label>
-                    </td>
-                    <td>
-                        <select id='cbkelas'>
-                        <option value="%">Semua Kelas</option>
-                        <?php 
-                            $siswa = new daftarsiswa();
-                            $kelas = "%";
-                            $matpel = "%";
-                            $sesi = "%";
-                            if(isset($_GET['kelas'])){
-                                $kelas = $_GET['kelas'];
-                                $matpel = $_GET['matpel'];
-                                $sesi = $_GET['sesi'];
-                            }
-                            $res_kelas = $siswa->getKelas("%");
-                            while($row=$res_kelas->fetch_assoc()){
-                                echo "<option value='".$row['kelas']."'>".$row['kelas']."</option>";
-                            }
-                        ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <label>Mata Pelajaran : </label>
-                    </td>
-                    <td>
-                        <select id='cbmatpel'>
-                    <option value="%">Semua Mata Pelajaran</option>
+        <table>
+            <tr>
+                <td>Nama Siswa</td>
+                <td>Email Siswa</td>
+            </tr>
+            <tr>
+                <td><input type="text" id='txtNamaSiswa'></td>
+                <td><input type="text" id='txtEmailSiswa'></td>
+            </tr>
+            <tr>
+                <td>Kelas Siswa</td>
+                <td>Username</td>
+            </tr>
+            <tr>
+                <td><select name="cboKelas" id="cbKelas">
+                    <option value="">Pilih Kelas</option>
                     <?php 
-                        $res_matpel = $siswa->getMatpel("%");
-                        while($row=$res_matpel->fetch_assoc()){
-                            echo "<option value='".$row['nama']."'>".$row['nama']."</option>";
-                        }
-                    ?>
-                    </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <label>Sesi : </label>
-                    </td>
-                    <td>
-                        <select id='cbsesi'>
-                    <option value="%">Semua Sesi</option>
-                    <?php 
-                        $res_sesi = $siswa->getSesi("%");
-                        while($row=$res_sesi->fetch_assoc()){
-                            echo "<option value='".$row['nama']."'>".$row['nama']."</option>";
-                        }
-                    ?>
-                    </select>
-                    </td>
-                </tr>
-            </table>
-            <button id='btnSortir'>Sortir</button>
-        </div>
-        <div id='jumlah-siswa'>
-            <p>Total Siswa : 
-                <?php 
-                    $data_siswa = $siswa->getJumlahSiswa();
-                    while($row=$data_siswa->fetch_assoc()){
-                        echo $row['jumlah'];
+                    $kelas = "%";
+                    $daftar = new daftarsiswa();
+                    if(isset($_GET['kelas'])){
+                        $kelas = $_GET['kelas'];
                     }
-                ?>  
-            </p>
-        </div>
-        <div id='content-siswa'>
-            <table id='table_siswa'>
-                <tr>
-                    <td>Username</td>
-                    <td>Nama</td>
-                    <td>Kelas</td>
-                    <td>Tanggal Lahir</td>
-                    <td>Sekolah</td>
-                    <td>Email</td>
-                    <td>No HP</td>
-                    <td>Password</td>
-                    <td>Aksi</td>
-                </tr>
-                
-                    <?php 
-                        $res_siswa = $siswa->getSiswa();
-                        if(isset($_GET['kelas'])){
-                            $res_siswa = $siswa->getSiswaFilter($kelas, $matpel, $sesi);
-                        }
-                        $unik = 1;
-                        while($row=$res_siswa->fetch_assoc()){
-                            echo "<tr>";
-                            echo "<td class='p_username'>".$row['username']."</td>";
-                            echo "<td class='p_nama'>".$row['nama']."</td>";
-                            echo "<td class='p_kelas' value='".$row['kelas_id']."'>".$row['kelas']."</td>";
-                            echo "<td class='p_tanggallahir'>".date('D-M-Y',strtotime($row['tanggal_lahir']))."</td>";
-                            echo "<td class='p_namasekolah'>".$row['nama_sekolah']."</td>";
-                            echo "<td class='p_email'>".$row['email']."</td>";
-                            echo "<td class='p_nohp'>".$row['no_hp']."</td>";
-                            echo "<td class='p_password'>".$row['password']."</td>";
-                            echo "<td><button class='btnEdit' value='$unik'>Edit</button>&nbsp &nbsp &nbsp<button class='btnHapus' value='$unik'>Hapus</button></td>";
-                            echo "</tr>";
-                            $unik +=1;
-                        }
+                    $res_kelas = $daftar->getKelas("%");
+                    while($row=$res_kelas->fetch_assoc()){
+                        echo "<option value='".$row['id']."'>".$row['kelas']."</option>";
+                    }
+                    
                     ?>
-                
-            </table>
-        </div>
+                </select></td>
+                <td><input type="text" id='txtUsername'></td>
+            </tr>
+            <tr>
+                <td>Tanggal Lahir</td>
+                <td>Password</td>
+            </tr>
+            <tr>
+                <td><input type="Date" id='tglLahir'></td>
+                <td><input type="text" id='tctpassword'></td>
+            </tr>
+            <tr><td>No HP</td></tr>
+            <tr><td><input type="text" id='txtnohp'></td></tr>
+            <tr><td>Nama Sekolah</td></tr>
+            <tr><td><input type="text" id='txtNamaSekolah'></td>
+            <td><button id='btnSimpan'>Simpan</button><button id='btnBatal'>Batal</button></td>
+            </tr>
+        </table>
+        
+        
     </div>
     <script type="text/javascript">
         $(".btnnav").click(function(){
@@ -207,6 +144,25 @@ require_once("EduconceptClass.php");
             window.location.href="tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel;
             
         });
+        $("#btnSimpan").click(function(){
+            var namasiswa = $("#txtNamaSiswa").val();
+            var emailsiswa = $("#txtEmailSiswa").val();
+            var kelas = $("#cbKelas").val();
+            var username = $("#txtUsername").val();
+            var tgl_lahir = $("#tglLahir").val(); // Mendapatkan nilai dari input tipe tanggal
+            var password = $("#tctpassword").val();
+            var nama_Sekolah = $("#txtNamaSekolah").val();
+            var no_hp = $("#txtnohp").val();
+            $.post("insertsiswa-ajax.php", {username: username, kelas_id:kelas, nama:namasiswa, 
+            nama_sekolah:nama_Sekolah, email:emailsiswa, no_hp:no_hp, password:password, tgl_lahir:tgl_lahir}).done(function(data){
+                if(data == "Tambah Gagal"){
+                    alert(data);
+                }else{
+                    alert(data);
+                }
+            })
+            window.location.href="daftarsiswa.php";
+        });
         $("#btnSortir").click(function(){
             var kelas = $("#cbkelas").val();
             var matpel = $("#cbmatpel").val();
@@ -214,7 +170,7 @@ require_once("EduconceptClass.php");
             window.location.href="daftarsiswa.php?kelas="+kelas+"&matpel="+matpel+"&sesi="+sesi;
         });
         if (performance.navigation.type === 1) {
-        history.replaceState({}, document.title, "daftarsiswa.php");
+        history.replaceState({}, document.title, "tambahsiswa.php");
         }
         $(".btnEdit").click(function(){
             var id = $(this).val();

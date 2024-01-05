@@ -1,5 +1,5 @@
 <?php 
-$id = $_POST['id'];
+$id = $_POST['idkelas'];
 $con = new mysqli('localhost', 'root', '', 'educoncept_db');
 $stmt = $con->prepare("delete from kelas where id like ?");
 $stmt->bind_param("i", $id);

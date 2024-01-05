@@ -50,7 +50,7 @@ require_once("EduconceptClass.php");
             <br>
             <p id='txtMataPelajaran'>Mata Pelajaran</p>
             <select name="matpel_siswa" id="cb_matpel_siswa">
-                <option value="%">--Pilih Kelas--</option>
+                <option value="%">--Pilih Matapelajaran--</option>
                 <?php
                     $key_kelas = "%";
                     $key_matpel = "%";
@@ -78,7 +78,7 @@ require_once("EduconceptClass.php");
         </div>
         <div id='content_border'>
             <div id='contant_tugas'>
-                <table id='table_tugas' border="1" class='scroll'>
+                <table id='table_tugas' class='scroll'>
                     <thead>    
                     <tr>
                     <td>No.</td>

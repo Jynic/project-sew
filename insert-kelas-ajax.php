@@ -1,14 +1,16 @@
 <?php 
-$id = $_POST['idsesi'];
+$kelas = $_POST['kelas'];
+$ruang = $_POST['ruang'];
+
 $con = new mysqli('localhost', 'root', '', 'educoncept_db');
-$stmt = $con->prepare("delete from sesi where idsesi like ?");
-$stmt->bind_param("i", $id);
+$stmt=$con->prepare("insert into kelas (kelas, ruang) values (?,?);");
+$stmt->bind_param("ss", $kelas, $ruang);
 $stmt->execute();
 if($stmt->affected_rows > 0){
     $response = array('status' => 'success', 'message' => 'Update berhasil');
 }else{
     $response = array('status' => 'error', 'message' => $stmt->error);
 }
-return json_encode($response);
+echo json_encode($response);
 
 ?>

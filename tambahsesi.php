@@ -6,10 +6,10 @@ require_once("EduconceptClass.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="daftarsiswa.css">
+    <link rel="stylesheet" type='text/css' href="daftarsesi.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <title>Tambah Tentor</title>
+    <title>Tambah Sesi</title>
 </head>
 <body>
     <div id='nav-samping-kiri'>
@@ -25,50 +25,30 @@ require_once("EduconceptClass.php");
         <div class='btnnav'><p>Home</p></div>
         <div class='btnnav '><p>Tugas</p></div>
         <div class='btnnav'><p>Jadwal</p></div>
-        <div class='btnnav'><p>Daftar</p></div>
-        <div class='btnnav click'><p>Tambah</p></div>
+        <div class='btnnav click'><p>Daftar</p></div>
+        <div class='btnnav'><p>Tambah</p></div>
     </div>
     <div id='header'>
         <div>
-            <p id='home-admin'>Tambah Tentor</p>
+            <p id='home-admin'>Tambah Sesi</p>
         </div>
     </div>
     <div id='container'>
         <div id='content-edit'>
             <table cellspacing=5 id='table-edit'>
                 <tr>
-                    <td><label class='lbl'>Nama Tentor</label></td>
-                    <td><label class='lbl'>Email</label></td>
+                    <td><label class='lbl'>Waktu Mulai Kelas</label></td>
+                    <td><label class='lbl'>Waktu Selesai Kelas</label></td>
                 </tr>
                 <tr>
-                    <td><input type="text" id='txtnama' placeholder='Masukan Nama' class='input'></td>
-                    <td><input type="text" id='txtemail' placeholder='Masukan Email' class='input'></td>
+                <td><input type="time" class='input' id='txtmulai'></td>
+                <td><input type="time" class='input' id='txtselesai'></td>
                 </tr>
                 <tr>
-                    <td><label class='lbl'>Asal Universitas</label></td>
-                    <td><label class='lbl'>Username</label></td>
+                    <td><label class='lbl'>Nama Sesi</label></td>
                 </tr>
                 <tr>
-                    <td><input type="text" id='txtuniversitas' placeholder='Masukan Universitas' class='input'></td>
-                    <td><input type="text" id='txtusername' placeholder='Masukan Username' class='input'></td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class='lbl'>Tanggal Lahir</label>
-                    </td>
-                    <td><label class='lbl'>Password</label></td>
-                </tr>
-                <tr>
-                    <td><input type="Date" id='txttgl_lahir'></td>
-                    <td><input type="text" id='txtpassword' placeholder='Masukan Password' class='input'></td>
-                </tr>
-                <tr>
-                    <td><label class='lbl'>No Handphone</label></td>
-                </tr>
-                <tr>
-                    <td><input type="text" id='txtnohp' placeholder='Masukan Nomor HP' class='input'></td>
-                </tr>
-                <tr>
+                <td><input type="text" id='txtnama' placeholder='Masukan Nama Sesi' class='input'></td>
                     <td>
                         <button id='btnSimpan'>Simpan</button>&nbsp
                         <button id='btnBatal'>Batal</button>
@@ -116,21 +96,16 @@ require_once("EduconceptClass.php");
             });
         });
         $("#btnSimpan").click(function(){
-            var username = $("#txtusername").val();
+            var mulai = $("#txtmulai").val();
+            var selesai = $("#txtselesai").val();
             var nama = $("#txtnama").val();
-            var asaluniv = $("#txtuniversitas").val();
-            var email = $("#txtemail").val();
-            var nohp = $("#txtnohp").val();
-            var password = $("#txtpassword").val();
-            var tanggal_lahir = $("#txttgl_lahir").val();
-            $.post("insert-tentor-ajax.php", {username: username,
-            nama: nama, tanggal_lahir: tanggal_lahir, asaluniv: asaluniv, 
-            email: email, nohp: nohp, password: password}).done(function(data){
+            $.post("insert-sesi-ajax.php", {mulai: mulai,
+            selesai: selesai, nama: nama}).done(function(data){
                 if(data == "Input Gagal"){
                     alert(data);
                 }else{
                     alert(data);
-                    window.location.href="daftartentor.php";
+                    window.location.href="daftarsesi.php";
                 }
             })
         });

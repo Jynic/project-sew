@@ -6,11 +6,11 @@ require_once("EduconceptClass.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="daftarsesi.css">
+    <link rel="stylesheet" type='text/css' href="daftarsiswa.css">
     <link rel="stylesheet" type='text/css' href="./dist/output.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     </style>
-    <title>Sesi</title>
+    <title>Daftar Tentor</title>
 </head>
 <body>
     <div id='nav-samping-kiri'>
@@ -31,48 +31,28 @@ require_once("EduconceptClass.php");
     </div>
     <div id='header'>
         <div>
-            <p id='home-admin'>Daftar Sesi</p>
+            <p id='home-admin'>Daftar Tentor</p>
         </div>
     </div>
     <div id='container'>
-        <div id='filter-sesi'>
+        <div id='filter-siswa'>
 
             <table>
+                
                 <tr>
                     <td>
-                    <label>Waktu Mulai : </label>
+                    <label>Mata Pelajaran : </label>
                     </td>
                     <td>
-                        <select id='cbmulai'>
-                        <option value="%">Waktu Mulai</option>
-                        <?php 
-                            $sesi = new sesi();
-                            $sesis = "%";
-                            $waktu_mul = "%";
-                            $waktu_sel = "%";
-                            if(isset($_GET['waktu_mula'])){
-                                $waktu_mul = $_GET['waktu_mula'];
-                                $waktu_sel = $_GET['waktu_selesai'];
-                            }
-                            $res_sesi = $sesi->getSesi("%");
-                            while($row=$res_sesi->fetch_assoc()){
-                                echo "<option value='".$row['waktu_mula']."'>".$row['waktu_mula']."</option>";
-                            }
-                        ?>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    <label>Waktu Selesai : </label>
-                    </td>
-                    <td>
-                        <select id='cbselesai'>
-                    <option value="%">Waktu Selesai</option>
+                        <select id='cbmatpel'>
+                    <option value="%">Semua Mata Pelajaran</option>
                     <?php 
-                        $res_sesi = $sesi->getSelesai("%");
-                        while($row=$res_sesi->fetch_assoc()){
-                            echo "<option value='".$row['waktu_selesai']."'>".$row['waktu_selesai']."</option>";
+                        $siswa = new daftarsiswa();
+                        $tentor = new daftartentor();
+                        $matpel = $_GET['matpel'];;
+                        $res_matpel = $siswa->getMatpel("%");
+                        while($row=$res_matpel->fetch_assoc()){
+                            echo "<option value='".$row['nama']."'>".$row['nama']."</option>";
                         }
                     ?>
                     </select>
@@ -80,30 +60,41 @@ require_once("EduconceptClass.php");
                 </tr>
             </table>
             <button id='btnSortir'>Sortir</button>
-            <button id='btnTambah'>Tambah</button>
         </div>
-        <div id='content-sesi'>
-            <table id='table_sesi'>
+        <div id='jumlah-siswa'>
+            <p>Total Siswa : 
+                <?php 
+                    $data_siswa = $siswa->getJumlahSiswa();
+                    while($row=$data_siswa->fetch_assoc()){
+                        echo $row['jumlah'];
+                    }
+                ?>  
+            </p>
+        </div>
+        <div id='content-siswa'>
+            <table id='table_siswa'>
                 <tr>
-                    <td>ID</td>
-                    <td>Sesi</td>
-                    <td>Waktu Mulai</td>
-                    <td>Waktu Selesai</td>
-                    <td>Aksi</td>
+                    <td>Username</td>
+                    <td>Nama</td>
+                    <td>Lulusan</td>
+                    <td>Email</td>
+                    <td>Mata Pelajaran</td>
+                    <td>Tanggal Lahir</td>
                 </tr>
                 
                     <?php 
-                        $res_sesi = $sesi->getSesi();
-                        if(isset($_GET['waktu_mula'])){
-                            $res_sesi = $sesi->getSesiFilter($waktu_mul, $waktu_sel);
+                        $res_tentor = $tentor->getTentor();
+                        if(isset($_GET['matpel'])){
+                            $res_tentor = $tentor->getTentorFilter($_GET['matpel']);
                         }
                         $unik = 1;
-                        while($row=$res_sesi->fetch_assoc()){
+                        while($row=$res_tentor->fetch_assoc()){
                             echo "<tr>";
-                            echo "<td class='p_id'>".$row['idsesi']."</td>";
-                            echo "<td class='p_sesi'>".$row['nama']."</td>";
-                            echo "<td class='p_mulai'>".$row['waktu_mula']."</td>";
-                            echo "<td class='p_selesai'>".$row['waktu_selesai']."</td>";
+                            echo "<td class='p_username'>".$row['username']."</td>";
+                            echo "<td class='p_nama'>".$row['nama']."</td>";
+                            echo "<td class='p_lulusan' value='".$row['lulusan']."'>".$row['lulusan']."</td>";
+                            echo "<td class='p_email'>".$row['email']."</td>";
+                            echo "<td class='p_nohp'>".$row['mata_pelajaran']."</td>";
                             echo "<td><button class='btnEdit' value='$unik'>Edit</button>&nbsp &nbsp &nbsp<button class='btnHapus' value='$unik'>Hapus</button></td>";
                             echo "</tr>";
                             $unik +=1;
@@ -155,8 +146,8 @@ require_once("EduconceptClass.php");
                 if(vale == "Daftar Kelas"){
                     window.location.href="daftarkelas.php";
                 }
-                if(vale == "Daftar Sesi"){
-                    window.location.href="daftarsesi.php";
+                if(vale == "Daftar Tentor"){
+                    window.location.href="daftartentor.php";
                 }
                 if(vale=="jadwalbimbel"){
                     window.location.href="jadwalbimbel.php";
@@ -166,53 +157,65 @@ require_once("EduconceptClass.php");
         $("#btnEditTugas").click(function(){
             window.location.href="edit_tugas.php";
         });
+        $("#btnCari").click(function(){
+            var key_mapel = $("#cb_matpel_siswa").val();
+            var key_kelas = $("#cb_kelas_siswa").val();
+            // alert("tugas.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel);
+            window.location.href="daftartentor.php?key_kelas="+key_kelas+"&key_matpel="+key_mapel;
+            
+        });
         $("#btnSortir").click(function(){
-            var mul = $("#cbmulai").val();
-            var sel = $("#cbselesai").val();
-            window.location.href="daftarsesi.php?waktu_mula="+mul+"&waktu_selesai="+sel;//ini kok gabisaaaaa
+
+            var matpel = $("#cbmatpel").val();
+            window.location.href="daftartentor.php?matpel="+matpel;
         });
         if (performance.navigation.type === 1) {
-        history.replaceState({}, document.title, "daftarsesi.php");
+        history.replaceState({}, document.title, "daftarsiswa.php");
         }
         $(".btnEdit").click(function(){
             var id = $(this).val();
-            $("#table_sesi tr").each(function(){
+            $("#table_siswa tr").each(function(){
                 var idulang = $(this).find(".btnEdit").val();
                 if(id === idulang){
                     alert(idulang)
-                    var idsesi = $(this).find(".p_id").html();
-                    var namass = $(this).find(".p_sesi").html();
-                    var mulss = $(this).find(".p_mulai").html();
-                    var selss = $(this).find(".p_selesai").html();
-                    alert(idsesi);
-                    window.location.href="editsesi.php?idss=" + idsesi + "&nama=" +
-                    namass + "&waktu_mula=" + mulss + "&waktu_selesai=" + selss;
+                    var username = $(this).find(".p_username").html();
+                    var nama = $(this).find(".p_nama").html();
+                    var kelas = $(this).find(".p_lulusan").html();
+                    var tanggal_lahir = $(this).find(".p_email").html();
+                    var sekolah = $(this).find(".p_nohp").html();
+                    var email = $(this).find(".p_tgllahir").html();
+                    var nohp = $(this).find(".p_nohp").html();
+                    var password = $(this).find(".p_password").html();
+                    var kelasid = $(this).find(".p_kelas").attr('value');
+                    alert(kelasid);
+                    window.location.href="editsiswa.php?username=" +
+                    username + "&nama=" + nama + "&kelas=" + kelas +
+                    "&tanggal_lahir=" + tanggal_lahir +
+                    "&sekolah=" + sekolah + "&email=" + email +
+                    "&nohp=" + nohp + "&p=" + password+"&kid="+kelasid;
 
                 }
             });
         });
         $(".btnHapus").click(function(){
             var id = $(this).val();
-            $("#table_sesi tr").each(function(){
+            $("#table_siswa tr").each(function(){
                 var idulang = $(this).find(".btnHapus").val();
                 if(id === idulang){
-                    var idsesi = $(this).find(".p_id").html();
-                    alert(idsesi);
+                    var username = $(this).find(".p_username").html();
+                    alert(username);
                     var confirmres = confirm("Apakah anda yakin menghapus data ini ?");
                     if(confirmres)
                     {
-                        $.post("hapus-sesi-ajax.php", {idsesi:idsesi
+                        $.post("hapus-siswa-ajax.php", {username:username
                         }).done(function(data){
                         alert(data);
                         
                         })
-                        window.location.href="daftarsesi.php";
+                        window.location.href="daftarsiswa.php";
                     }
                 }
             });
-        });
-        $("#btnTambah").click(function(){
-            window.location.href="tambahsesi.php";
         });
     </script>
 </body>

@@ -72,7 +72,7 @@
     color: #ffffff;
     font-weight: bold;
 }
-#filter-kelas{
+#filter-siswa{
     margin: 0rem 0rem 0rem 2rem ;
     background-color: #ffffff;
     border-radius: 10px;
@@ -95,24 +95,23 @@
     left: 26rem;
     padding: 0.5rem;
 }
-#btnTambah{
-    border: 1px solid #164863;
-    background-color: #164863;
-    color: #ffffff;
-    border-radius: 10px;
-    position: absolute;
-    z-index: 1;   
-    top: 5.3rem;
-    left: 26rem;
-    padding: 0.5rem;
-}
 select{
     width: 15rem;
     border: 1px solid #164863;
     border-radius: 10px;
     color: #ffffff;
 }
-#content-kelas{
+#jumlah-siswa{
+    background-color: #164863;
+    color: #ffffff;
+    padding: 1rem 3rem 1rem 3rem;
+    margin: 1rem 0rem 0rem 2rem ;
+    width: 70rem;
+    overflow: visible;
+    display: block;
+    border-radius: 10px;
+}
+#content-siswa{
     background-color: #164863;
     color: #ffffff;
     padding: 1rem 3rem 1rem 1rem;
@@ -124,7 +123,7 @@ select{
     display: block;
     border-radius: 10px;
 }
-#table_kelas{
+#table_siswa{
     text-align: center;
     background-color: #ffffff;
     border-radius: 15px;
@@ -132,11 +131,11 @@ select{
     width: 68rem;
     color: #164863;
 }
-#table_kelas tr td{
+#table_siswa tr td{
     padding: 1rem 1rem 1rem 1rem;
 
 }
-#table_kelas tr{
+#table_siswa tr{
     border: 1px solid #164863;
 }
 .btnEdit, .btnHapus{
@@ -174,8 +173,27 @@ select{
     padding: 0.3rem 1rem 0.3rem 1rem;
 }
 #btnSimpan{
-    background-color: #02ff1b;
+    background-color: #4692ba;
 }
 #btnBatal{
-    background-color: #ff1702;
+    background-color: #9d9d9d;
+}
+option{
+    color: #042b3f;
+}
+input{
+    border: 1px solid #042b3f;
+}
+table{
+    margin-left: 10rem;
+    
+}
+tr, td{
+    margin: 10px;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+}
+input{
+    border: 1px solid #164863;
+    border-radius: 10px;
+    width: 20rem;
 }

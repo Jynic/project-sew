@@ -229,5 +229,28 @@ class daftarsiswa extends Koneksi{
     }
     
 }
+class daftartentor extends Koneksi{
+    public function getTentor(){
+        $result = $this->con->query("select t.username, t.nama as nama, t.lulusan as lulusan, t.email, m.nama as mata_pelajaran
+        from tentor t inner join mata_pelajaran_has_tentor mp on t.username=mp.tentor_username
+        inner join mata_pelajaran m on mp.mata_pelajaran_idmata_pelajaran = m.idmata_pelajaran; ");
+        return $result;
+    }
+    public function getTentorFilter($matpel = "%"){
+        $result = $this->con->query("select t.username, t.nama as nama, t.lulusan as lulusan, t.email, m.nama as mata_pelajaran
+        from tentor t inner join mata_pelajaran_has_tentor mp on t.username=mp.tentor_username
+        inner join mata_pelajaran m on mp.mata_pelajaran_idmata_pelajaran = m.idmata_pelajaran where m.nama=?;");
+        return $result;
+    }
+}
+class tambahsiswa extends Koneksi{
+    public function getKelas($search = "%"){
+        $stmt = $this->con->prepare("select * from kelas where kelas like ?;");
+        $stmt->bind_param("s", $search);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result;
+    } 
+}
 
 ?>
